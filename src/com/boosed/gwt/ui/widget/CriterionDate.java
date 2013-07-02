@@ -56,4 +56,9 @@ public class CriterionDate extends Composite implements Criterion {
 	public String getValue() {
 		return Long.toString(date.getValue().getTime());
 	}
+	
+	@Override
+	public void showError(String error) {
+			
+	}
 }

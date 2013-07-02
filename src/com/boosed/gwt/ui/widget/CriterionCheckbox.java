@@ -1,6 +1,7 @@
 package com.boosed.gwt.ui.widget;
 
 import com.boosed.gwt.ui.Criterion;
+import com.boosed.gwt.ui.Resources;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -57,6 +58,12 @@ public class CriterionCheckbox extends Composite implements Criterion {
 	@Override
 	public String getValue() {
 		return value.getValue().toString();
+	}
+	
+	@Override
+	public void showError(String error) {
+		value.addStyleName(Resources.INSTANCE.criterionCss().error());
+		value.setTitle(error);
 	}
 	
 	@Override

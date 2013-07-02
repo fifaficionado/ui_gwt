@@ -1,26 +1,24 @@
 package com.boosed.gwt.ui.widget;
 
-import com.boosed.gwt.ui.Criterion;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CriterionText extends Composite implements Criterion {
+public class CriterionText extends CriterionBase<TextBox> {
 
 	private static CriterionTextUiBinder uiBinder = GWT.create(CriterionTextUiBinder.class);
 
 	interface CriterionTextUiBinder extends UiBinder<Widget, CriterionText> {
 	}
-
+	
 	@UiField
 	Label label;
 	
-	@UiField
-	TextBox value;
+	//@UiField
+	//TextBox value;
 	
 	private String key;
 	
@@ -49,10 +47,5 @@ public class CriterionText extends Composite implements Criterion {
 	@Override
 	public String getValue() {
 		return value.getValue();
-	}
-	
-	@Override
-	public void setWidth(String width) {
-		value.setWidth(width);
 	}
 }

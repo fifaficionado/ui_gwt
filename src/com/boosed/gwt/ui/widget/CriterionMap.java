@@ -94,10 +94,18 @@ public class CriterionMap extends Composite implements Criterion,
 	}
 
 	public Map<String, String> getValues() {
-		// TODO get the values
-		return new HashMap<String, String>();
+		// get the values
+		Map<String, String> values = new HashMap<String, String>();
+		for (int i = value.getItemCount(); --i > -1;)
+			values.put(value.getItemText(i), value.getValue(i));
+		return values;
 	}
 
+	@Override
+	public void showError(String error) {
+			
+	}
+	
 	@Override
 	public void setWidth(String width) {
 		value.setWidth(width);

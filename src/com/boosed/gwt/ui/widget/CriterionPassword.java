@@ -52,6 +52,11 @@ public class CriterionPassword extends Composite implements Criterion {
 	}
 	
 	@Override
+	public void showError(String error) {
+			
+	}
+	
+	@Override
 	public void setWidth(String width) {
 		value.setWidth(width);
 	}

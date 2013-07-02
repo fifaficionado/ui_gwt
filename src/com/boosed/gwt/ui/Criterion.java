@@ -27,4 +27,11 @@ public interface Criterion {
 	 * @return
 	 */
 	public String getValue();
+	
+	/**
+	 * Show an error. Use null to hide error message.
+	 * 
+	 * @param error
+	 */
+	public void showError(String error);
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:s="urn:import:com.boosed.gwt.ui.widget">
+	<ui:style>
+		.button {
+			margin-right: 5px;
+		}
+		
+		.warning {
+			font-weight: bold;
+			color: red;
+		}
+	</ui:style>
+	<g:VerticalPanel spacing="5">
+		<!-- flag -->
+		<s:CriterionText ui:field="flag" name="flag" key="flag" width="150px" />
+
+		<!-- argument -->
+		<s:CriterionText ui:field="argument" name="argument"
+			key="argument" width="150px" />
+
+		<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
+			<g:HorizontalPanel>
+				<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
+					<g:Button ui:field="add" text="add" addStyleNames="{style.button}" />
+				</g:cell>
+
+				<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
+					<g:Button ui:field="cancel" text="cancel" />
+				</g:cell>
+			</g:HorizontalPanel>
+		</g:cell>
+
+		<g:cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
+			<g:Label ui:field="warning" styleName="{style.warning}" visible="false"/>
+		</g:cell>
+	</g:VerticalPanel>
+</ui:UiBinder> 

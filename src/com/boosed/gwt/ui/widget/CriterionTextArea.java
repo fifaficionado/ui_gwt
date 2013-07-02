@@ -52,6 +52,11 @@ public class CriterionTextArea extends Composite implements Criterion {
 	}
 	
 	@Override
+	public void setHeight(String height) {
+		value.setHeight(height);
+	}
+	
+	@Override
 	public void setWidth(String width) {
 		value.setWidth(width);
 	}

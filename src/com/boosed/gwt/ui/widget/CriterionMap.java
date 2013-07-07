@@ -124,8 +124,15 @@ public class CriterionMap extends Composite implements Criterion,
 		});
 	}
 
+	/**
+	 * Remove flag from list.
+	 * 
+	 * @param event
+	 */
 	@UiHandler("delete")
-	public void delete(ClickEvent event) {
-		// TODO perform deletion
+	void delete(ClickEvent event) {
+		int index = value.getSelectedIndex();
+		if (index != -1)
+			value.removeItem(index);
 	}
 }

@@ -55,7 +55,7 @@ public interface AbstractView<T, P extends Presenter<T>> extends IsWidget {
 	 */
 	public void alert(String title, String text);
 
-	public void setTitle(String title);
+	public void setHeader(String header);
 
 	public void setInstruction(String instruction);
 	// public void setForward(String forward);

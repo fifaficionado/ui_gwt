@@ -47,10 +47,15 @@ public abstract class BaseActivity<V extends AbstractView<T, VP>, P extends Plac
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		// set presenter
 		view.setPresenter((VP) this);
+		
+		// clear the view
+		view.clear();
 	}
 	
 	@Override
 	public void onNavigate(Place place) {
+		// clean up before continuing to next view
+		view.clear();
 		controller.goTo(place);
 	}
 }

@@ -125,14 +125,14 @@ public class CriterionMap extends Composite implements Criterion,
 	}
 
 	/**
-	 * Remove flag from list.
+	 * Remove selected items from list.
 	 * 
 	 * @param event
 	 */
 	@UiHandler("delete")
 	void delete(ClickEvent event) {
-		int index = value.getSelectedIndex();
-		if (index != -1)
-			value.removeItem(index);
+		for (int i = value.getItemCount(); --i > -1;)
+			if (value.isItemSelected(i))
+				value.removeItem(i);
 	}
 }

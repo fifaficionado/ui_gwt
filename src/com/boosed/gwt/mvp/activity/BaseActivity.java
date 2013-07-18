@@ -81,7 +81,8 @@ public abstract class BaseActivity<V extends AbstractView<T, VP>, P extends Plac
 	 * @param caught
 	 */
 	public void warn(String message, Throwable caught) {
-		Window.alert(String.format("%s: %s", message, caught.getClass()
-				.getSimpleName()));
+		String error = caught.toString();
+		error = error.substring(error.lastIndexOf('.') + 1);
+		Window.alert(message.concat(": ").concat(error));
 	}
 }

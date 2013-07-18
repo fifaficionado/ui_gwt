@@ -6,6 +6,7 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 /**
@@ -14,11 +15,16 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
  * 
  * @author dsumera
  * 
- * @param <V> view type
- * @param <P> place type
- * @param <RPC> type of rpc endpoint
- * @param <T> entity type managed by view
- * @param <X> presenter type
+ * @param <V>
+ *            view type
+ * @param <P>
+ *            place type
+ * @param <RPC>
+ *            type of rpc endpoint
+ * @param <T>
+ *            entity type managed by view
+ * @param <X>
+ *            presenter type
  */
 public abstract class BaseActivity<V extends AbstractView<T, VP>, P extends Place, RPC, T, VP extends Presenter<T>>
 		extends AbstractActivity implements Presenter<T> {
@@ -31,7 +37,7 @@ public abstract class BaseActivity<V extends AbstractView<T, VP>, P extends Plac
 
 	/* typically an rpc endpoint to communicate */
 	protected RPC rpc;
-	
+
 	/* controller to affect navigation */
 	private PlaceController controller;
 
@@ -41,21 +47,41 @@ public abstract class BaseActivity<V extends AbstractView<T, VP>, P extends Plac
 		this.rpc = rpc;
 		this.controller = controller;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		// set presenter
 		view.setPresenter((VP) this);
-		
+
 		// clear the view
 		view.clear();
 	}
-	
+
 	@Override
 	public void onNavigate(Place place) {
 		// clean up before continuing to next view
 		view.clear();
 		controller.goTo(place);
+	}
+
+	/**
+	 * Display a warning message.
+	 * 
+	 * @param message
+	 */
+	public void warn(String message) {
+		Window.alert(message);
+	}
+
+	/**
+	 * Display a warning message with exception.
+	 * 
+	 * @param message
+	 * @param caught
+	 */
+	public void warn(String message, Throwable caught) {
+		Window.alert(String.format("%s: %s", message, caught.getClass()
+				.getSimpleName()));
 	}
 }

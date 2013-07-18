@@ -28,10 +28,10 @@ public class CriterionMapAdd extends PopupPanel {
 	}
 
 	@UiField
-	CriterionText flag;
+	CriterionText key;
 
 	@UiField
-	CriterionText argument;
+	CriterionText value;
 
 	@UiField
 	Button cancel;
@@ -40,6 +40,8 @@ public class CriterionMapAdd extends PopupPanel {
 	Button add;
 
 	private AddListener listener;
+	
+	private boolean paired;
 
 	@UiField
 	Label warning;
@@ -58,12 +60,12 @@ public class CriterionMapAdd extends PopupPanel {
 	void add(ClickEvent event) {
 		if (listener != null) {
 			// check if flag is blank
-			String key = flag.getValue().trim();
-			if (key.isEmpty()) {
-				warning.setText("flag must be specified");
+			String k = key.getValue().trim();
+			if (k.isEmpty()) {
+				warning.setText(key.getName() + " must be specified");
 				warning.setVisible(true);
 			} else {
-				listener.onAdd(key, argument.getValue().trim());
+				listener.onAdd(k, paired ? value.getValue().trim() : k);
 				// reset();
 				// hide();
 				cancel(event);
@@ -93,6 +95,22 @@ public class CriterionMapAdd extends PopupPanel {
 		hide();
 	}
 
+	/* set the label of the key field */
+	public void setKeyName(String name) {
+		key.setName(name);
+	}
+	
+	/* set the label of the value field */
+	public void setValueName(String name) {
+		value.setName(name);
+	}
+	
+	/* whether to show value field in popup panel */
+	public void setPaired(boolean enabled) {
+		paired = enabled;
+		value.setVisible(enabled);
+	}
+	
 	/**
 	 * Reset state of panel.
 	 */
@@ -100,7 +118,7 @@ public class CriterionMapAdd extends PopupPanel {
 		warning.setVisible(false);
 		warning.setText("");
 
-		flag.setValue("");
-		argument.setValue("");
+		key.setValue("");
+		value.setValue("");
 	}
 }

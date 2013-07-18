@@ -35,6 +35,10 @@ public class CriterionText extends CriterionBase<TextBox> {
 		this.key = key;
 	}
 	
+	public String getName() {
+		return label.getText();
+	}
+	
 	public void setName(String name) {
 		label.setText(name);
 	}

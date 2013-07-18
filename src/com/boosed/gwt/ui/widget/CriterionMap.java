@@ -1,12 +1,13 @@
 package com.boosed.gwt.ui.widget;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import com.boosed.gwt.ui.Criterion;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -28,6 +29,12 @@ public class CriterionMap extends Composite implements Criterion,
 	public CriterionMap() {
 		initWidget(uiBinder.createAndBindUi(this));
 		addPanel.setAddListener(this);
+		value.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				value.setTitle(value.getValue(value.getSelectedIndex()));
+			}
+		});
 	}
 
 	@UiField
@@ -69,6 +76,19 @@ public class CriterionMap extends Composite implements Criterion,
 		return key;
 	}
 
+	/* whether to show value field in popup panel */
+	public void setPaired(boolean enabled) {
+		addPanel.setPaired(enabled);
+	}
+	
+	public void setKeyField(String name) {
+		addPanel.setKeyName(name);
+	}
+	
+	public void setValueField(String name) {
+		addPanel.setValueName(name);
+	}
+	
 	public void setKey(String key) {
 		this.key = key;
 	}
@@ -94,18 +114,20 @@ public class CriterionMap extends Composite implements Criterion,
 	}
 
 	public Map<String, String> getValues() {
-		// get the values
-		Map<String, String> values = new HashMap<String, String>();
-		for (int i = value.getItemCount(); --i > -1;)
+		// get the values IN ORDER!
+		Map<String, String> values = new LinkedHashMap<String, String>();
+		//for (int i = value.getItemCount(); --i > -1;)
+		int len = value.getItemCount();
+		for (int i = 0; i < len; i++)
 			values.put(value.getItemText(i), value.getValue(i));
 		return values;
 	}
 
 	@Override
 	public void showError(String error) {
-			
+
 	}
-	
+
 	@Override
 	public void setWidth(String width) {
 		value.setWidth(width);
@@ -118,8 +140,11 @@ public class CriterionMap extends Composite implements Criterion,
 			@Override
 			public void setPosition(int offsetWidth, int offsetHeight) {
 				addPanel.setPopupPosition(
-						getAbsoluteLeft() + Math.abs(getOffsetWidth() - offsetWidth)/2,
-						getAbsoluteTop() + Math.abs(getOffsetHeight() - offsetHeight)/2);
+						getAbsoluteLeft()
+								+ Math.abs(getOffsetWidth() - offsetWidth) / 2,
+						getAbsoluteTop()
+								+ Math.abs(getOffsetHeight() - offsetHeight)
+								/ 2);
 			}
 		});
 	}
@@ -132,7 +157,11 @@ public class CriterionMap extends Composite implements Criterion,
 	@UiHandler("delete")
 	void delete(ClickEvent event) {
 		for (int i = value.getItemCount(); --i > -1;)
-			if (value.isItemSelected(i))
+			if (value.isItemSelected(i)) {
 				value.removeItem(i);
+				
+				// remove tooltip
+				value.setTitle("");
+			}
 	}
 }

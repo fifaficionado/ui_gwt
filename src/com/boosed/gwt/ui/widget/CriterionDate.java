@@ -58,6 +58,11 @@ public class CriterionDate extends Composite implements Criterion {
 	}
 	
 	@Override
+	public void setEnabled(boolean enabled) {
+		date.setEnabled(enabled);	
+	}
+	
+	@Override
 	public void showError(String error) {
 			
 	}

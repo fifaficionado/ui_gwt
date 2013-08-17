@@ -17,19 +17,8 @@ public class CriterionTextArea extends CriterionBase<TextArea> {
 	@UiField
 	Label label;
 	
-	private String key;
-	
 	public CriterionTextArea() {
 		initWidget(uiBinder.createAndBindUi(this));
-	}
-
-	@Override
-	public String getKey() {
-		return key;
-	}
-	
-	public void setKey(String key) {
-		this.key = key;
 	}
 	
 	public void setName(String name) {

@@ -27,7 +27,14 @@ public interface Criterion {
 	 * @return
 	 */
 	public String getValue();
-	
+
+	/**
+	 * Enabled/disable this widget for input.
+	 * 
+	 * @param enabled
+	 */
+	public void setEnabled(boolean enabled);
+
 	/**
 	 * Show an error. Use null to hide error message.
 	 * 

@@ -1,16 +1,13 @@
 package com.boosed.gwt.ui.widget;
 
-import com.boosed.gwt.ui.Criterion;
-import com.boosed.gwt.ui.Resources;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CriterionCheckbox extends Composite implements Criterion {
+public class CriterionCheckbox extends CriterionBase<CheckBox> {
 
 	private static CriterionCheckboxUiBinder uiBinder = GWT.create(CriterionCheckboxUiBinder.class);
 
@@ -19,11 +16,6 @@ public class CriterionCheckbox extends Composite implements Criterion {
 
 	@UiField
 	Label label;
-	
-	@UiField
-	CheckBox value;
-	
-	private String key;
 	
 	public CriterionCheckbox() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -36,16 +28,7 @@ public class CriterionCheckbox extends Composite implements Criterion {
 		setValue(value);
 		//initWidget(uiBinder.createAndBindUi(this));
 	}
-	
-	@Override
-	public String getKey() {
-		return key;
-	}
 
-	public void setKey(String key) {
-		this.key = key;
-	}
-	
 	public void setName(String name) {
 		label.setText(name);
 	}
@@ -58,16 +41,5 @@ public class CriterionCheckbox extends Composite implements Criterion {
 	@Override
 	public String getValue() {
 		return value.getValue().toString();
-	}
-	
-	@Override
-	public void showError(String error) {
-		value.addStyleName(Resources.INSTANCE.criterionCss().error());
-		value.setTitle(error);
-	}
-	
-	@Override
-	public void setWidth(String width) {
-		value.setWidth(width);
 	}
 }

@@ -11,13 +11,12 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PopupPanel.PositionCallback;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CriterionMap extends Composite implements Criterion,
+public class CriterionMap extends CriterionBase<ListBox> implements Criterion,
 		CriterionMapAdd.AddListener {
 
 	private static CriterionMapUiBinder uiBinder = GWT
@@ -39,11 +38,6 @@ public class CriterionMap extends Composite implements Criterion,
 
 	@UiField
 	Label label;
-
-	@UiField
-	ListBox value;
-
-	private String key;
 
 	private CriterionMapAdd addPanel = new CriterionMapAdd();
 
@@ -71,11 +65,6 @@ public class CriterionMap extends Composite implements Criterion,
 		this.value.addItem(key, value);
 	}
 
-	@Override
-	public String getKey() {
-		return key;
-	}
-
 	/* whether to show value field in popup panel */
 	public void setPaired(boolean enabled) {
 		addPanel.setPaired(enabled);
@@ -89,10 +78,6 @@ public class CriterionMap extends Composite implements Criterion,
 		addPanel.setValueName(name);
 	}
 	
-	public void setKey(String key) {
-		this.key = key;
-	}
-
 	public void setName(String name) {
 		label.setText(name);
 	}
@@ -121,16 +106,6 @@ public class CriterionMap extends Composite implements Criterion,
 		for (int i = 0; i < len; i++)
 			values.put(value.getItemText(i), value.getValue(i));
 		return values;
-	}
-
-	@Override
-	public void showError(String error) {
-
-	}
-
-	@Override
-	public void setWidth(String width) {
-		value.setWidth(width);
 	}
 
 	@UiHandler("add")

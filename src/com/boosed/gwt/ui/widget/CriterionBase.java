@@ -4,15 +4,17 @@ import com.boosed.gwt.ui.Criterion;
 import com.boosed.gwt.ui.Resources;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.FocusWidget;
 
-public abstract class CriterionBase<T extends Widget> extends Composite
+public abstract class CriterionBase<T extends FocusWidget> extends Composite
 		implements Criterion {
 
 	/* wrapped widget */
 	@UiField
-	T value;
+	public T value;
 
+	private String key;
+	
 	static {
 		// static init of css resources
 		Resources.INSTANCE.criterionCss().ensureInjected();
@@ -29,6 +31,20 @@ public abstract class CriterionBase<T extends Widget> extends Composite
 		}
 	}
 
+	@Override
+	public String getKey() {
+		return key;
+	}
+	
+	public void setKey(String key) {
+		this.key = key;
+	}
+	
+	@Override
+	public void setEnabled(boolean enabled) {
+		value.setEnabled(enabled);	
+	}
+	
 	@Override
 	public void setHeight(String height) {
 		value.setHeight(height);

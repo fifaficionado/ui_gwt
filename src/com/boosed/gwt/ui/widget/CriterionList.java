@@ -4,12 +4,11 @@ import com.boosed.gwt.ui.Criterion;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CriterionList extends Composite implements Criterion {
+public class CriterionList extends CriterionBase<ListBox> implements Criterion {
 
 	private static CriterionListUiBinder uiBinder = GWT.create(CriterionListUiBinder.class);
 
@@ -19,22 +18,8 @@ public class CriterionList extends Composite implements Criterion {
 	@UiField
 	Label label;
 
-	@UiField
-	public ListBox value;
-
-	private String key;
-
 	public CriterionList() {
 		initWidget(uiBinder.createAndBindUi(this));
-	}
-
-	@Override
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
 	}
 
 	public void setName(String name) {
@@ -55,15 +40,5 @@ public class CriterionList extends Composite implements Criterion {
 	@Override
 	public String getValue() {
 		return value.getValue(value.getSelectedIndex());
-	}
-	
-	@Override
-	public void showError(String error) {
-			
-	}
-	
-	@Override
-	public void setWidth(String width) {
-		value.setWidth(width);
 	}
 }
